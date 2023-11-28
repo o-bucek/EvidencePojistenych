@@ -9,6 +9,7 @@ public class UzivatelskeRozhrani {
      * Vypíše hlavní uživatelské menu
      */
     public void printMenu() {
+        System.out.println();
         System.out.println("------------------------------");
         System.out.println("Evidence pojištěných");
         System.out.println("------------------------------");
