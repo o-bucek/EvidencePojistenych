@@ -69,6 +69,7 @@ public class ProgramEvidencePojistencu {
                 telefonniCislo = "";
         } while (telefonniCislo.isEmpty());
         spravaPojistencu.pridejPojistence(jmeno, prijmeni, datumNarozeni, telefonniCislo);
+        ui.informujUzivatele("Pojištěnec zaevidován");
     }
 
     /**
