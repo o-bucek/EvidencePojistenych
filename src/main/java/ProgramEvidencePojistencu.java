@@ -84,7 +84,7 @@ public class ProgramEvidencePojistencu {
      */
     public void vyhledejUzivatele() {
         String hledanyVyraz = ui.zpracujVstupUzivatele("Zadejte jméno, příjmení nebo ID uživatele: ");
-        ArrayList<Pojistenec> vyhledaniPojistenci = spravaPojistencu.vyhledejUzivatele(hledanyVyraz);
+        ArrayList<Pojistenec> vyhledaniPojistenci = spravaPojistencu.vyhledejPojistence(hledanyVyraz);
         if (vyhledaniPojistenci.isEmpty()) {
             ui.informujUzivatele("Nebyla nalezena žádná shoda");
         } else {

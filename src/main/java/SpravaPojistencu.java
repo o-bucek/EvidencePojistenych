@@ -33,7 +33,7 @@ public class SpravaPojistencu {
      * @param hledanyVyraz zadaný uživatelem
      * @return ArrayList<Pojistenec> vyhledaniPojistenci
      */
-    public ArrayList<Pojistenec> vyhledejUzivatele(String hledanyVyraz) {
+    public ArrayList<Pojistenec> vyhledejPojistence(String hledanyVyraz) {
         int id = 0;
         ArrayList<Pojistenec> vyhledaniPojistenci = new ArrayList();
         // Separuje jméno, příjmení a případně ID
