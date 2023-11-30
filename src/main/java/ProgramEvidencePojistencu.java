@@ -25,7 +25,7 @@ public class ProgramEvidencePojistencu {
             switch (volba) {
                 case 1 -> evidujPojistence();
                 case 2 -> vypisVsechnyPojistence();
-                case 3 -> vyhledejUzivatele();
+                case 3 -> vyhledejPojistence();
                 case 4 -> odstranPojistence();
                 case 5 -> {
                     ui.informujUzivatele("Konec programu");
@@ -82,7 +82,7 @@ public class ProgramEvidencePojistencu {
     /**
      * Vyhledá uživatele na základě uživatelského vstupu
      */
-    public void vyhledejUzivatele() {
+    public void vyhledejPojistence() {
         String hledanyVyraz = ui.zpracujVstupUzivatele("Zadejte jméno, příjmení nebo ID uživatele: ");
         ArrayList<Pojistenec> vyhledaniPojistenci = spravaPojistencu.vyhledejPojistence(hledanyVyraz);
         if (vyhledaniPojistenci.isEmpty()) {
@@ -112,13 +112,13 @@ public class ProgramEvidencePojistencu {
      * Vrací true, pokud zadaný vstup obsahuje pouze povolené znaky (ČR!)
      * "aeiouyáéěíóúůýbcčdďfghjklmnpqrřsštťvwxzžAEIOUYÁÉĚÍÓÚŮÝBCČDĎFGHJKLMNPQRŘSŠTŤVWXZŽ"
      *
-     * @param text
+     * @param text String vstup od oživatele
      * @return boolean
      */
     public boolean validujZnakyADelku(String text) {
         String povoleneZnaky = "aeiouyáéěíóúůýbcčdďfghjklmnpqrřsštťvwxzžAEIOUYÁÉĚÍÓÚŮÝBCČDĎFGHJKLMNPQRŘSŠTŤVWXZŽ";
         for (char znak : text.toCharArray()) {
-            if (!povoleneZnaky.contains(String.valueOf(znak))) {
+            if (!(povoleneZnaky.contains(String.valueOf(znak)))) {
                 ui.informujUzivatele("Neplatný znak");
                 return false;
             }
@@ -126,15 +126,16 @@ public class ProgramEvidencePojistencu {
         if (text.length() < 3) {
             ui.informujUzivatele("Zadejte minimálně 3 znaky");
             return false;
+        } else {
+            return true;
         }
-        return true;
+
     }
 
     /**
-     * Vrací String s velkým počátečný písmenem.
      *
-     * @param vstup
-     * @return
+     * @param vstup -  String zvlaidovaný text (jméno/příjmení)
+     * @return - String s velkým počátečný písmenem
      */
     public String formatujPocatecniPismeno(String vstup) {
         vstup = vstup.toLowerCase();
@@ -169,12 +170,12 @@ public class ProgramEvidencePojistencu {
      * Ověří, že byla použita pouze čísla, případně mezery a znaménko "+" pro předvolbu a prověří délku.
      * Akceptuje min. 9ti místné číslo bez předvolby, min. 11ti místné s předvolbou. Max délka 14 znaků
      *
-     * @param textTelefon
-     * @return
+     * @param textTelefon - String vstupní hodnota zadaná uživatelem
+     * @return true, pokud je formát akceptovatelný
      */
     public boolean validujTelefon(String textTelefon) {
         String povoleneZnakyTelefon = "0123456789 +";
-        String vstupBezMezer = "";
+        String vstupBezMezer;
         int minPocet = 9;
         if (textTelefon.contains("+")) minPocet = 11;
         for (char znak : textTelefon.toCharArray()) {
